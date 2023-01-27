@@ -3,10 +3,18 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 // ignore: must_be_immutable
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({super.key});
 
-  Color color1 = Colors.black;
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool tap_acc = false;
+  bool timer = false;
+  bool and_phone = false;
+  bool iphone = false;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Material App Bar'),
+            title: Text('Mc Flutter'),
           ),
           body: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +30,8 @@ class MyApp extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  margin: EdgeInsets.all(24),
+                  margin: EdgeInsets.all(20),
+                  padding: EdgeInsets.only(top: 10.0),
                   decoration:
                       BoxDecoration(border: Border.all(color: Colors.black)),
                   child: Column(
@@ -75,36 +84,50 @@ class MyApp extends StatelessWidget {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
+                        padding: const EdgeInsets.only(top: 5.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             IconButton(
                                 onPressed: () {
-                                  if (color1 == Colors.black) {
-                                    color1 = Colors.red;
-                                  } else {
-                                    color1 = Colors.black;
-                                  }
+                                  tap_acc = !tap_acc;
+                                  setState(() {});
                                 },
                                 icon: Icon(
                                   Icons.accessibility,
-                                  color: color1,
+                                  color:
+                                      tap_acc ? Colors.indigo : Colors.black54,
                                 )),
                             IconButton(
                                 onPressed: () {
-                                  if (color1 == Colors.black) {
-                                    color1 = Colors.red;
-                                  } else {
-                                    color1 = Colors.black;
-                                  }
+                                  timer = !timer;
+                                  setState(() {});
                                 },
                                 icon: Icon(
                                   Icons.timer_rounded,
-                                  color: color1,
+                                  color: timer ? Colors.indigo : Colors.black54,
                                 )),
-                            Icon(Icons.phone_android),
-                            Icon(Icons.phone_iphone)
+                            IconButton(
+                                onPressed: () {
+                                  and_phone = !and_phone;
+                                  setState(() {});
+                                },
+                                icon: Icon(
+                                  Icons.phone_android,
+                                  color: and_phone
+                                      ? Colors.indigo
+                                      : Colors.black54,
+                                )),
+                            IconButton(
+                                onPressed: () {
+                                  iphone = !iphone;
+                                  setState(() {});
+                                },
+                                icon: Icon(
+                                  Icons.phone_iphone,
+                                  color:
+                                      iphone ? Colors.indigo : Colors.black54,
+                                ))
                           ],
                         ),
                       )
